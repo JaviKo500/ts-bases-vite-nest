@@ -2,7 +2,8 @@ import './style.css'
 import typescriptLogo from './typescript.svg'
 import viteLogo from '/vite.svg'
 import { setupCounter } from './counter.ts'
-import { name, templateString } from './bases/01-types.ts';
+import { bulbasaur, pokemonsIds } from './bases/02-objects.ts'
+// import { name, templateString } from './bases/01-types.ts';
 
 document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
   <div>
@@ -17,10 +18,10 @@ document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
       <button id="counter" type="button"></button>
     </div>
     <div class="card">
-    ${name}
+    ${pokemonsIds.join(', ')}
     </div>
     <p class="read-the-docs">
-      ${templateString}
+      ${bulbasaur.name}
     </p>
     <p class="read-the-docs">
       Click on the Vite and TypeScript logos to learn more
