@@ -1,3 +1,5 @@
+import axios from 'axios';
+import { PokemonApiResponse } from '../interfaces/pokeapi-response.interfaces';
 export class Pokemon {
    // public id: number;
    // public name: string;
@@ -16,12 +18,19 @@ export class Pokemon {
    }
 
    scream() {
-      console.log('<--------------- JK 03-class --------------->');
+      console.log('<--------------- JK 03-class - -------------->');
       console.log(`${ this.name.toUpperCase() } !!!`);
    }
 
    speak () {
       console.log( `${this.name} ${this.name}` );
+   }
+
+   async getMoves() {
+      const { data } = (await axios.get<PokemonApiResponse>('https://pokeapi.co/api/v2/pokemon/4'))
+      console.log('<--------------- JK 03-class --------------->');
+      console.log(data?.moves);
+      return data?.moves;
    }
 }
 
@@ -33,3 +42,6 @@ console.log(charmander);
 
 charmander.scream();
 charmander.speak();
+
+console.log('<--------------- JK 03-class --------------->');
+console.log(charmander.getMoves().then((moves) => console.log(moves)));

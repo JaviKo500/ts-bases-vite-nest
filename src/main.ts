@@ -19,7 +19,7 @@ document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
       <button id="counter" type="button"></button>
     </div>
     <div class="card">
-    ${charmander}
+    ${charmander.name}
     </div>
     <p class="read-the-docs">
       ${''}
