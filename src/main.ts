@@ -4,7 +4,8 @@ import viteLogo from '/vite.svg'
 import { setupCounter } from './counter.ts'
 // import { charmander } from './bases/03-class.ts'
 // import { charmander } from './bases/04-injections'
-import { charmander } from './bases/05-decorators'
+// import { charmander } from './bases/05-decorators'
+import { charmander } from './bases/06-decorators-dep'
 // import { bulbasaur, pokemonsIds } from './bases/02-objects.ts'
 // import { name, templateString } from './bases/01-types.ts';
 
