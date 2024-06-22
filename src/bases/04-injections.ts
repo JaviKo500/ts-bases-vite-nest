@@ -1,38 +1,39 @@
-import axios from 'axios';
 import { PokemonApiResponse, Move } from '../interfaces/pokeapi-response.interfaces';
-import { PokeApiAdapter } from '../api/pokeApi.adapter';
+import { HttpAdapter, PokeApiAdapter, PokeApiFetchAdapter } from '../api/pokeApi.adapter';
 
 export class Pokemon {
 
-    get imageUrl(): string {
-        return `https://pokemon.com/${ this.id }.jpg`;
-    }
-  
-    constructor(
-        public readonly id: number, 
-        public name: string,
-        // Todo: inyectar dependencias
-         private readonly http: PokeApiAdapter,
-    ) {}
+   get imageUrl(): string {
+      return `https://pokemon.com/${this.id}.jpg`;
+   }
 
-    scream() {
-        console.log(`${ this.name.toUpperCase() }!!!`);
-    }
+   constructor(
+      public readonly id: number,
+      public name: string,
+      private readonly http: HttpAdapter,
+   ) { }
 
-    speak() {
-        console.log(`${ this.name }, ${ this.name }`);
-    }
+   scream() {
+      console.log(`${this.name.toUpperCase()}!!!`);
+   }
 
-    async getMoves(): Promise<Move[]> {
-        const { moves = [] } = await this.http.get('https://pokeapi.co/api/v2/pokemon/4');
-        console.log( moves );
-        
-        return moves ?? [];
-    }
+   speak() {
+      console.log(`${this.name}, ${this.name}`);
+   }
+
+   async getMoves(): Promise<Move[]> {
+      const { moves = [] } = await this.http.get<PokemonApiResponse>('https://pokeapi.co/api/v2/pokemon/4');
+      console.log(moves);
+
+      return moves ?? [];
+   }
 
 }
 
-const  pokeApi= new PokeApiAdapter()
-export const charmander = new Pokemon( 4, 'Charmander', pokeApi );
+const pokeApi = new PokeApiAdapter()
+const pokeApiFetch = new PokeApiFetchAdapter()
+export const charmander = new Pokemon(4, 'Charmander', pokeApi);
+export const charmanderFetch = new Pokemon(4, 'Charmander', pokeApiFetch);
 
 charmander.getMoves();
+charmanderFetch.getMoves();
